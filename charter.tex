@@ -14,14 +14,14 @@
 \autor{Alejandro Moreno} 
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
-\director{Nombre del Director}
-\pertenenciaDirector{pertenencia} 
+\director{Dr. Ing. Juan Ignacio Giribet}
+\pertenenciaDirector{FIUBA} 
 % FIXME:NO IMPLEMENTADO EL CODIRECTOR ni su pertenencia
 \codirector{} % si queda vacio no se deberíá incluir 
 \pertenenciaCoDirector{}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Manuel Francisco Díaz Ramos}
+\cliente{Mg. Ing. Manuel Francisco Díaz Ramos}
 \empresaCliente{Satellogic S.A.}
 
 % Nombre y pertenencia de los jurados, se pueden usar el cualquier lugar del documento con el comando \jurunoname, \jurdosname y \jurtresname y \perteunoname, \pertedosname y \pertetresname.
@@ -34,8 +34,11 @@
  
 \fechaINICIO{22 de junio de 2020}		%Fecha de inicio de la cursada de GdP \fechaInicioName
 \fechaFINALPlanificacion{22 de Agosto de 2020} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{22 de diciembre de 2020}		%Fecha de defensa pública del trabajo final
+\fechaFINALTrabajo{22 de Julio de 2021}		%Fecha de defensa pública del trabajo final
 
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 \begin{document}
 
@@ -64,6 +67,7 @@
 \rowcolor[HTML]{C0C0C0} 
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 1.0      & Creación del documento                                                          & 10/07/2020 \\ \hline
+1.1      & Redacción del punto 6 - 12                                                      & 27/07/2020 \\ \hline
 %1.1      & Ejemplo de un texto muy largo que debiera ocupar más de una línea para que tengan de ejemplo                                                                                																						   & dd/mm/aaaa \\ \hline
 %1.2      & Otro ejemplo \newline
 %		   Con texto partido \newline
@@ -114,14 +118,6 @@ En lo que respecta al presente trabajo se propone diseñar una solución basada 
 
 Lo anteriormente mencionado resulta de sumo interés para el cliente puesto que su empresa se dedica a la comercialización de imágenes satelitales y para ello debe lidiar, ajustar y diseñar sus Sistemas de Control de Órbita y Actitud (AOCS) para conseguir las mejores prestaciones. Al mismo tiempo, dada la proyección de crecimiento de la flota de satélites que pretende administrar en los años venideros, se encuentra ventajoso explorar opciones alternativas a las actualmente utilizadas por la compañía para los sistemas de navegación puesto que la robustez y/o costos de fabricación podrían verse notoriamente beneficiados.
 
-\begin{consigna}{red}
-
-\begin{itemize}
-\item ¿Cuales son las necesidades que debe satisfacer?
-\item ¿Por dónde pasa la innovación?
-\end{itemize}
-\end{consigna}
-
 En la Figura~\ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se puede apreciar que el sistema es sencillo de entender lo que lo convierte en un buen modelo abstracto del problema a solucionar.
 
 \vspace{25px}
@@ -139,7 +135,7 @@ En la Figura~\ref{fig:diagBloques} se presenta el diagrama en bloques del sistem
 \section{Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-\begin{table}[ht]
+\begin{table}[H]
 %\caption{Identificación de los interesados}
 %\label{tab:interesados}
 \begin{tabularx}{\linewidth}{@{}|l|X|X|l|@{}}
@@ -160,7 +156,7 @@ Usuario final & Satellogic S.A.   & -             	& -      	\\ \hline
 
 \begin{itemize}
 \item \textbf{Cliente:} es un experto en sistemas de Navegación, Control y Guiado. Amplia experiencia en la industria y formación académica profunda. Necesita que el proyecto se lleve adelante sin demasiada intervención por su parte porque su agenda está muy apretada. No contactar por nimiedades.
-\item \textbf{Orientador:} 
+\item \textbf{Orientador:} es un experto en temas de Navegación, Control y Guiado. Amplia experiencia en proyectos de la industria aeroespacial y larga trayectoria académica. Es una persona conocida y de confianza pero tiene muchas obligaciones. En tal sentido, presentarle soluciones para que él las evalúe pero no pedirle intervención continuamente.
 \end{itemize}
 
 
@@ -232,6 +228,13 @@ Para el desarrollo del presente proyecto se supone que:
 	\end{enumerate}
 \end{enumerate}
 
+\section{Historias de usuarios (\textit{Product backlog})}
+\label{sec:backlog}
+
+\begin{consigna}{red}
+En esta sección se deben incluir las historias de usuarios y su ponderación (history points). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+\end{consigna}
+
 \section{5. Entregables principales del proyecto}
 \label{sec:entregables}
 
@@ -259,88 +262,96 @@ Para el desarrollo del presente proyecto se supone que:
 \section{7. Diagrama de Activity On Node}
 \label{sec:AoN}
 
-\begin{consigna}{red}
-Armar el AoN a partir del WBS definido en la etapa anterior. 
-
-%La figura \ref{fig:AoN} fue elaborada con el paquete latex tikz y pueden consultar la siguiente referencia \textit{online}:
-
-%\url{https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_3)\%E2\%80\%94Creating_Flowcharts}
-
-\end{consigna}
-
-\begin{figure}[htpb]
+\begin{figure}[H]
 \centering 
-\includegraphics[width=.8\textwidth]{./Figuras/AoN.png}
-\caption{Diagrama en \textit{Activity on Node}}
+\includegraphics[page=1, width=\textwidth]{./Figuras/AoN.pdf}
+\caption{Diagrama en \textit{Activity on Node} (Primera parte)}
 \label{fig:AoN}
 \end{figure}
 
-Indicar claramente en qué unidades están expresados los tiempos.
-De ser necesario indicar los caminos semicríticos y analizar sus tiempos mediante un cuadro.
-Es recomendable usar colores y un cuadro indicativo describiendo qué representa cada color, como se muestra en el siguiente ejemplo:
-
+\begin{figure}[H]
+\centering 
+\includegraphics[page=2, width=\textwidth]{./Figuras/AoN.pdf}
+\caption{Diagrama en \textit{Activity on Node} (Segunda parte)}
+\label{fig:AoN}
+\end{figure}
 
 
 \section{8. Diagrama de Gantt}
 \label{sec:gantt}
 
-\begin{consigna}{red}
-Utilizar el software Gantter for Google Drive o alguno similar para dibujar el diagrama de Gantt.
-
-Existen muchos programas y recursos \textit{online} para hacer diagramas de gantt, entre las cuales destacamos:
-
-\begin{itemize}
-\item Planner
-\item GanttProject
-\item Trello + \textit{plugins}. En el siguiente link hay un tutorial oficial: \\ \url{https://blog.trello.com/es/diagrama-de-gantt-de-un-proyecto}
-\item Creately, herramienta online colaborativa. \\\url{https://creately.com/diagram/example/ieb3p3ml/LaTeX}
-\item Se puede hacer en latex con el paquete \textit{pgfgantt}\\ \url{http://ctan.dcc.uchile.cl/graphics/pgf/contrib/pgfgantt/pgfgantt.pdf}
-\end{itemize}
-
-Pegar acá una captura de pantalla del diagrama de Gantt, cuidando que la letra sea suficientemente grande como para ser legible. 
-Si el diagrama queda demasiado ancho, se puede pegar primero la ``tabla'' del Gantt y luego pegar la parte del diagrama de barras del diagrama de Gantt.
-
-Configurar el software para que en la parte de la tabla muestre los códigos del EDT (WBS).\\
-Configurar el software para que al lado de cada barra muestre el nombre de cada tarea.\\
-Revisar que la fecha de finalización coincida con lo indicado en el Acta Constitutiva.
-
-En la figura \ref{fig:gantt}, se muestra un ejemplo de diagrama de gantt realizado con el paquete de \textit{pgfgantt}. En la plantilla pueden ver el código que lo genera y usarlo de base para construir el propio.
-
-\begin{figure}[htbp]
-\begin{center}
-\begin{ganttchart}{1}{12}
-  \gantttitle{2020}{12} \\
-  \gantttitlelist{1,...,12}{1} \\
-  \ganttgroup{Group 1}{1}{7} \\
-  \ganttbar{Task 1}{1}{2} \\
-  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
-  \ganttmilestone{Milestone o hito}{7} \ganttnewline
-  \ganttbar{Final Task}{8}{12}
-  \ganttlink{elem2}{elem3}
-  \ganttlink{elem3}{elem4}
-\end{ganttchart}
-\end{center}
-\caption{Diagrama de gantt de ejemplo}
-\label{fig:gantt}
+\begin{figure}[H]
+\centering 
+\includegraphics[width=1.4\textwidth, angle =90]{./Figuras/Gantt1.pdf}
+\caption{Diagrama de Gantt (primera parte)}
+\label{fig:Gantt}
 \end{figure}
 
-\end{consigna}
+\begin{figure}[H]
+\centering 
+\includegraphics[width=\textwidth]{./Figuras/Gantt2.pdf}
+\caption{Diagrama de Gantt (segunda parte)}
+\label{fig:Gantt}
+\end{figure}
+
 
 \section{9. Matriz de uso de recursos de materiales}
 \label{sec:recursos}
 
-
-\begin{table}[htpb]
+\begin{table}[H]
 \label{tab:recursos}
 \centering
-\begin{tabularx}{\linewidth}{@{}|c|X|X|X|X|X|@{}}
+\begin{tabularx}{\linewidth}{@{}|c|X|>{\centering}m{2cm}|c|c|@{}}
 \hline
-\cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \multicolumn{4}{c|}{\cellcolor[HTML]{C0C0C0}Recursos requeridos (horas)} \\ \cline{3-6} 
-\multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Código\\ WBS\end{tabular}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Nombre \\ tarea\end{tabular}} & Material 1 & Material 2 & Material 3 & Material 4 \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
+\cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}Recursos requeridos (días)} \\ \cline{3-5} 
+\multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Código\\ WBS\end{tabular}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Nombre \\ Tarea\end{tabular}} & Procesador de texto & Matlab & EDU-CIAA \\ \hline
+\rowcolor{lightgray!50}
+\textbf{1}	& \textbf{Inicio del proyecto}  					& \textbf{0} 	& \textbf{0} 		& \textbf{0} \\ \hline
+\rowcolor{lightgray!50}
+\textbf{2}	& \textbf{Etapa 1: Planificación} 						& \textbf{30} 	& \textbf{0} 	& \textbf{0} \\ \hline
+2.1 		& Documento de planificación 							& 30 			&  				& 	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{3}	& \textbf{Etapa 2: Estudio} 							& \textbf{65} 	& \textbf{0}	& \textbf{0} \\ \hline
+3.1			& Bibliografía Filtro de Kalman						& 30 			&  				& 	\\ \hline
+3.2			& Bibliografía Astrodinámica							& 30 			&  				& 	\\ \hline
+3.3			& Bibliografía GNSS										& 30 			&  				& 	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{4}	& \textbf{Etapa 3: Diseño del Filtro}					& \textbf{0}	& \textbf{45}	& \textbf{0} \\ \hline
+\rowcolor{lightgray!25}
+4.1			& Truth model											& 0	 			& 30 			& 0 \\ \hline
+4.1.1		& Diseño del modelo de actualización de estados		& 	 			& 10 			& 	\\ \hline
+4.1.2		& Diseño del modelo de los sensores 					& 	 			& 5 			& 	\\ \hline
+4.1.3		& Diseño del modelo de actualización de mediciones	& 	 			& 10 			& 	\\ \hline
+\rowcolor{lightgray!25}
+4.2			& Design model											& 0 			& 15 			& 0 \\ \hline
+4.2.1		& Diseño del modelo de actualización de estados		& 	 			& 5 			&   \\ \hline
+4.2.2		& Diseño del modelo de los sensores 					& 	 			& 5 			& 	\\ \hline
+4.2.3		& Diseño del modelo de actualización de mediciones	& 	 			& 5 			& 	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{5}	& \textbf{Etapa 4: Análisis}							& \textbf{0}	& \textbf{22}	& \textbf{0} \\ \hline
+5.1			& Análisis de covarianza								& 	 			& 10 			& 	\\ \hline
+5.2			& Análisis de residuos 									& 	 			& 3 			& 	\\ \hline
+5.3			& Presupuesto de errores								& 	 			& 5 			& 	\\ \hline
+5.4			& Análisis de datos faltantes							& 	 			& 4 			& 	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{6}	& \textbf{Documentación del avance del proyecto} 		& \textbf{4}	& \textbf{0}	& \textbf{0} \\ \hline
+\rowcolor{lightgray!50}
+\textbf{7} 	& \textbf{Informe de avance} 							& \textbf{0} 	& \textbf{0}	& \textbf{0} \\ \hline
+\rowcolor{lightgray!50}
+\textbf{8}	& \textbf{Etapa 5: Implementación}						& \textbf{0} 	& \textbf{0} 	& \textbf{42}\\ \hline
+8.1			& Biblioteca: parseo de datos GNSS						& 	 			& 	 			& 15\\ \hline
+8.2			& Biblioteca: observables a pos/vel					& 	 			& 	 			& 7 \\ \hline
+8.3			& Biblioteca: Filtro de Kalman a partir de observable & 	 			& 	 			& 10\\ \hline
+8.4			& Biblioteca: Filtro de Kalman a partir de pos/vel 	& 	 			& 	 			& 10\\ \hline
+\rowcolor{lightgray!50}
+\textbf{9} 	& \textbf{Etapa 6: Análisis de prestación}				& \textbf{0}	& \textbf{7} 	& \textbf{7} \\ \hline
+9.1			& Metodo de Montecarlo contra modelo 'real' 			& 	 			& 7 			& 7 \\ \hline
+\rowcolor{lightgray!50}
+\textbf{10}	& \textbf{Etapa 7: Documentación final}				& \textbf{19} 	& \textbf{0} 	& \textbf{0} \\ \hline
+10.1 		& Memoria del trabajo		 							& 15 			& 	 			& 	\\ \hline
+10.2 		& Presentación del trabajo		 						& 4 			& 	 			& 	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{11}	& \textbf{Fin del proyecto} 							& \textbf{0} 	& \textbf{0}	& \textbf{0} \\ \hline
 \end{tabularx}%
 \end{table}
 
@@ -348,18 +359,7 @@ En la figura \ref{fig:gantt}, se muestra un ejemplo de diagrama de gantt realiza
 \section{10. Presupuesto detallado del proyecto}
 \label{sec:presupuesto}
 
-\begin{consigna}{red}
-Si el proyecto es complejo entonces separarlo en partes:
-\begin{itemize}
-\item Un total global, indicando el subtotal acumulado por cada una de las áreas.
-\item El desglose detallado del subtotal de cada una de las áreas.
-\end{itemize}
-
-IMPORTANTE: No olvidarse de considerar los COSTOS INDIRECTOS.
-
-\end{consigna}
-
-\begin{table}[htpb]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\linewidth}{@{}|X|c|r|r|@{}}
 \hline
@@ -368,26 +368,14 @@ IMPORTANTE: No olvidarse de considerar los COSTOS INDIRECTOS.
 \rowcolor[HTML]{C0C0C0} 
 Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Costo unitario (Pesos)} &
+  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total (Pesos)} \\ \hline
+Horas Hombre & 
+  \multicolumn{1}{c|}{600} &  
+  \multicolumn{1}{c|}{a definir} &  
+  \multicolumn{1}{c|}{a definir}  \\ \hline
 \multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+  \multicolumn{1}{c|}{a definr} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS INDIRECTOS} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
@@ -395,58 +383,91 @@ Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
+\multicolumn{1}{|l|}{EDU-CIAA} &
+  \multicolumn{1}{c|}{1} &  
+  \multicolumn{1}{c|}{5000} &  
+  \multicolumn{1}{c|}{5000}  \\ \hline    
 \multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+  \multicolumn{1}{c|}{5000} \\ \hline
 \rowcolor[HTML]{C0C0C0}
 \multicolumn{3}{|c|}{TOTAL} &
-   \\ \hline
+  \multicolumn{1}{c|}{a definr} \\ \hline
 \end{tabularx}%
 \end{table}
 
 
 \section{11. Matriz de asignación de responsabilidades}
 \label{sec:responsabilidades}
-\begin{consigna}{red}
-Establecer la matriz de asignación de responsabilidades y el manejo de la autoridad completando la siguiente tabla:
 
 \begin{table}[htpb]
 \centering
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|m{3cm}|m{3cm}|m{3cm}|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 \cellcolor[HTML]{C0C0C0} &
   \cellcolor[HTML]{C0C0C0} &
-  \multicolumn{4}{c|}{\cellcolor[HTML]{C0C0C0}Listar todos los nombres y roles del proyecto} \\ \cline{3-6} 
+  \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}} \\ \cline{3-5} 
 \rowcolor[HTML]{C0C0C0} 
 \cellcolor[HTML]{C0C0C0} &
   \cellcolor[HTML]{C0C0C0} &
   Responsable &
   Orientador &
-  Equipo &
-  Cliente \\ \cline{3-6} 
+  Cliente \\ \cline{3-5} 
 \rowcolor[HTML]{C0C0C0} 
 \multirow{-3}{*}{\cellcolor[HTML]{C0C0C0}\begin{tabular}[c]{@{}c@{}}Código\\ WBS\end{tabular}} &
   \multirow{-3}{*}{\cellcolor[HTML]{C0C0C0}Nombre de la tarea} &
-  \authorname &
-  \supname &
-  Nombre de alguien &
-  \clientename \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
+	\authorname &
+  	\supname &
+  	\clientename \\ \hline
+
+\rowcolor{lightgray!50}
+\textbf{1}	& \textbf{Inicio del proyecto}  						& 			 	& 			 	&  \\ \hline
+\rowcolor{lightgray!50}
+\textbf{2}	& \textbf{Etapa 1: Planificación} 						& 			 	& 				&			 \\ \hline
+2.1 		& Documento de planificación 							& P 			& I				& A	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{3}	& \textbf{Etapa 2: Estudio} 							& 			 	& 				&  \\ \hline
+3.1			& Bibliografía Filtro de Kalman						& P 			& A 			& C	\\ \hline
+3.2			& Bibliografía Astrodinámica							& P 			& A				& C	\\ \hline
+3.3			& Bibliografía GNSS										& P 			& A				& C	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{4}	& \textbf{Etapa 3: Diseño del Filtro}					& 				& 				& 	 \\ \hline
+\rowcolor{lightgray!25}
+4.1			& Truth model											& 	 			& 	 			&  \\ \hline
+4.1.1		& Diseño del modelo de actualización de estados		& P	 			& C/A 			& I	\\ \hline
+4.1.2		& Diseño del modelo de los sensores 					& P	 			& C/A 			& I	\\ \hline
+4.1.3		& Diseño del modelo de actualización de mediciones	& P	 			& C/A			& I	\\ \hline
+\rowcolor{lightgray!25}
+4.2			& Design model											& 	 			& 	 			& 	\\ \hline
+4.2.1		& Diseño del modelo de actualización de estados		& P	 			& C 			& A  \\ \hline
+4.2.2		& Diseño del modelo de los sensores 					& P	 			& C 			& A	\\ \hline
+4.2.3		& Diseño del modelo de actualización de mediciones	& P	 			& C	 			& A	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{5}	& \textbf{Etapa 4: Análisis}							& 				& 				&  \\ \hline
+5.1			& Análisis de covarianza								& P	 			& C	 			& A	\\ \hline
+5.2			& Análisis de residuos 									& P	 			& C	 			& A	\\ \hline
+5.3			& Presupuesto de errores								& P 			& C	 			& A	\\ \hline
+5.4			& Análisis de datos faltantes							& P 			& C	 			& A	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{6}	& \textbf{Documentación del avance del proyecto} 		& P				& I				& A \\ \hline
+\rowcolor{lightgray!50}
+\textbf{7} 	& \textbf{Informe de avance} 							& 			 	& 				&  \\ \hline
+\rowcolor{lightgray!50}
+\textbf{8}	& \textbf{Etapa 5: Implementación}						& 			 	& 			 	& \\ \hline
+8.1			& Biblioteca: parseo de datos GNSS						& P	 			& C	 			& C/A \\ \hline
+8.2			& Biblioteca: observables a pos/vel					& P	 			& C	 			& A	\\ \hline
+8.3			& Biblioteca: Filtro de Kalman a partir de observable & P	 			& C	 			& A	\\ \hline
+8.4			& Biblioteca: Filtro de Kalman a partir de pos/vel 	& P	 			& C	 			& A	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{9} 	& \textbf{Etapa 6: Análisis de prestación}				& 				& 			 	&  \\ \hline
+9.1			& Metodo de Montecarlo contra modelo 'real' 			& P	 			& C  			& A \\ \hline
+\rowcolor{lightgray!50}
+\textbf{10}	& \textbf{Etapa 7: Documentación final}				& 			 	& 			 	&  \\ \hline
+10.1 		& Memoria del trabajo		 							& P 			& A	 			& A	\\ \hline
+10.2 		& Presentación del trabajo		 						& P 			& I	 			& I	\\ \hline
+\rowcolor{lightgray!50}
+\textbf{11}	& \textbf{Fin del proyecto} 							& 			 	& 				& \\ \hline
 \end{tabular}%
 }
 \end{table}
@@ -461,13 +482,6 @@ Referencias:
 	\item C = Consultado
 \end{itemize}
 } %footnotesize
-
-Una de las columnas debe ser para el Director, ya que se supone que participará en el proyecto.
-A su vez se debe cuidar que no queden muchas tareas seguidas sin ``A'' o ``I''.
-
-Importante: es redundante poner ``I/A'' o ``I/C'', porque para aprobarlo o responder consultas primero la persona debe ser informada.
-
-\end{consigna}
 
 \section{12. Gestión de riesgos}
 \label{sec:riesgos}
