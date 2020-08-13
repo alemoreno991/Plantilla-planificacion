@@ -40,6 +40,8 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
+\usepackage{longtable} % para tablas largas
+
 \begin{document}
 
 \maketitle
@@ -68,11 +70,8 @@
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 1.0      & Creación del documento                                                          & 10/07/2020 \\ \hline
 1.1      & Redacción del punto 6 - 12                                                      & 27/07/2020 \\ \hline
-%1.1      & Ejemplo de un texto muy largo que debiera ocupar más de una línea para que tengan de ejemplo                                                                                																						   & dd/mm/aaaa \\ \hline
-%1.2      & Otro ejemplo \newline
-%		   Con texto partido \newline
-%		   En varias líneas \newline
-%		   A propósito                                                                     & dd/mm/aaaa \\ \hline
+1.2      & Redacción del punto 12 - 17                                                     & 07/08/2020 \\ \hline
+1.3      & Redacción historias de usuario                                                  & 12/08/2020 \\ \hline
 \end{tabularx}
 \end{table}
 
@@ -226,14 +225,38 @@ Para el desarrollo del presente proyecto se supone que:
 		\item Utilizar un modelo de actualización de mediciones basado en la utilización del pseudo-rango y el corrimiento doppler cada 1 segundo.
 		\end{enumerate}
 	\end{enumerate}
+\item Requerimientos de caracterización y comparación del filtro del cliente con el diseñado en este proyecto
+	\begin{enumerate}
+		\item Análisis de covarianza.
+		\item Análisis de residuos.
+	\end{enumerate}
 \end{enumerate}
 
 \section{Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
 
-\begin{consigna}{red}
-En esta sección se deben incluir las historias de usuarios y su ponderación (history points). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
-\end{consigna}
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{m{5cm}|m{2.5cm}|m{2cm}|m{1.5cm}|m{2.5cm}|}
+\cline{2-5}
+\rowcolor[HTML]{C0C0C0}
+\multicolumn{1}{m{5cm}}{\cellcolor{white}{}} & \multicolumn{4}{|c|}{Puntos de Historia} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+\multicolumn{1}{|m{5cm}|}{Historia de usuario} 	& Conocimiento & Complejidad & Volúmen & Incertidumbre \\ \hline
+\multicolumn{1}{|m{5cm}|}{Como Ingeniero de Guiado, quiero poder obtener los datos de posición y velocidad en coordenadas ECEF-WGS84} & 7  & 6 & 5 & 5 \\ \hline
+\multicolumn{1}{|m{5cm}|}{Como Ingeniero de Navegación, quiero poder disponer de los datos parseados que entrega el receptor GPS} 	  & 10 & 4 & 4 & 5 \\ \hline
+\multicolumn{1}{|m{5cm}|}{Como Ingeniero de Navegación, quiero poder disponer de los observables de GPS calculados por medio de los datos de PV} & 7 & 7 & 6 & 6 \\ \hline
+\multicolumn{1}{|m{5cm}|}{Como Ingeniero de Navegación, quiero poder poder hacer análisis de performance del filtro} & 7 & 6 & 5 & 6 
+\\ \hline
+\multicolumn{1}{|m{5cm}|}{Como Ingeniero de Navegación, quiero poder disponer de una biblioteca bien documentada} 	  & 10 & 2 & 3 & 3 
+\\ \hline
+\multicolumn{1}{|m{5cm}|}{Como Ingeniero de Control, quiero tener disponibles estimaciones de PV cada 100ms} 	  	  & 10 & 9 & 8 & 10 
+\\ \hline
+\end{tabular}%
+}
+\end{table}
+
 
 \section{5. Entregables principales del proyecto}
 \label{sec:entregables}
@@ -486,171 +509,256 @@ Referencias:
 \section{12. Gestión de riesgos}
 \label{sec:riesgos}
 
-\begin{consigna}{red}
-a) Identificación de los riesgos (al menos cinco) y estimación de sus consecuencias:
- 
-Riesgo 1: detallar el riesgo (riesgo es algo que si ocurre altera los planes previstos)
+a) Identificación de los riesgos y estimación de sus consecuencias:
+
+Riesgo 1: Dificultad de comprensión de la teoría de funcionamiento del GPS.
 \begin{itemize}
-\item Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).\\
-Justificar el motivo por el cual se asigna determinado número de severidad (S).
-\item Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).\\
-Justificar el motivo por el cual se asigna determinado número de (O). 
+\item Severidad (S): 8.\\
+Este riesgo trae aparejadas complicaciones importantes puesto que es imprescindible utilizar adecuadamente el GPS para que el sistema de navegación genere estimaciones apropiadas.
+\item Probabilidad de ocurrencia (O): 7.\\
+Las chances de que se producza este riesgo es considerable puesto que no se cuenta con experiencia previa.
 \end{itemize}   
 
-Riesgo 2:
+Riesgo 2: Dificultad de comprensión de la teoría de sistemas de navegación.
 \begin{itemize}
-\item Severidad (S): 
-\item Ocurrencia (O):
+\item Severidad (S): 8.\\
+Se trata de un riesgo con una severidad alta puesto que la teoría de navegación es la piedra angular de la aplicación. Sin embargo, una comprensión parcial junto con ejemplos de uso permite continuar con el proyecto.
+\item Probabilidad de ocurrencia (O): 6.\\
+Se cuenta con experiencia en proyectos donde se aplicaron métodos similares a los que se pretende usar en esta aplicación. No obstante, los proyectos previos fueron mucho menos complejos. 
+\end{itemize}   
+
+Riesgo 3: Dificultad de compresión de la teoría de Astrodinámica.
+\begin{itemize}
+\item Severidad (S): 8. \\
+Se trata de un riesgo con una severidad alta puesto que la teoría de astrodinámica es la que rige buena parte de la las estimaciones del sistema de navegación. Sin embargo, una comprensión parcial junto con ejemplos de uso permite continuar con el proyecto.
+\item Ocurrencia (O): 5. \\
+Se cuenta con fundamentos suficientes como para lograr una compresión adecuada de la teoría. Asimismo, es menester tener presente que lo que exige la aplicación no es un modelo de alta precisión puesto que debe ir a bordo del vehículo y servir para estimar en tiempo real
 \end{itemize}
 
-Riesgo 3:
+Riesgo 4: Dificultad de implementar la solución en la plataforma utilizando el lenguaje de programación requerido.
 \begin{itemize}
-\item Severidad (S): 
-\item Ocurrencia (O):
+\item Severidad (S): 9. \\
+La severidad de este riesgo es elevada puesto que el proyecto es esencialmente lograr hacer la implementación de las bibliotecas en C++.
+\item Ocurrencia (O): 6. \\
+La probabilidad de que este riesgo ocurra es significativo puesto que no se cuenta con experiencia implementando sistemas embebidos en C++. No obstante, no es extremadamente elevado porque sí se cuenta con experiencia programando en C++.
 \end{itemize}
 
+Riesgo 5: Dificultad para llevar a cabo los testeos que permitan evaluar la performance del sistema de navegación.
+\begin{itemize}
+\item Severidad (S): 6. \\
+Si bien es uno de los requerimientos del cliente, no es el que más complicaciones trae al proyecto puesto que el diseño del sistema de navegación es el que conlleva la mayor importancia.
+\item Ocurrencia (O): 4. \\
+La posibilidad de que ocurra es baja puesto que existe bibliografía en abundancia que habla de cómo evaluar la performance de un sistema de navegación.
+\end{itemize}
 
 b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
 
-\begin{table}[htpb]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\linewidth}{@{}|X|c|c|c|c|c|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
+Dificultad de comprensión de la teoría de funcionamiento del GPS.       										& 8 & 7 & 56  & 8  & 5  & 40   \\ \hline
+Dificultad de comprensión de la teoría de sistemas de navegación.       										& 8 & 6 & 48  & 8  & 6  & 48   \\ \hline
+Dificultad de compresión de la teoría de Astrodinámica.       												& 8 & 5 & 40  & 8  & 5  & 40   \\ \hline
+Dificultad de implementar la solución en la plataforma utilizando el lenguaje de programación requerido.	& 9 & 6 & 54  & 9  & 3  & 27	\\ \hline
+Dificultad para llevar a cabo los testeos que permitan evaluar la performance del sistema de navegación.    & 6 & 4 & 24  & 6  & 4  & 24	\\ \hline
 \end{tabularx}%
 \end{table}
 
 Criterio adoptado: 
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a ....
+Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 50
 
 Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
 
 c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
  
-Riesgo 1: Plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
-  Nueva asignación de S y O, con su respectiva justificación:
-  - Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de severidad (S).
-  - Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de (O).
+Riesgo 1: Recurrir a expertos en la materia, como por ejemplo el director del trabajo, el propio cliente o profesores con experiencia profesional en aplicaciones aeroespaciales.
+\begin{itemize}
+  \item Severidad (S): 8 \\
+La severidad de este riesgo no decrece por la acción de mitigación. 
+  \item Probabilidad de ocurrencia (O): 5. \\
+Las chances de ocurrencia disminuyen puesto que la ayuda de personas con experiencia siempre reduce el esfuerzo que se necesita para comprender un tema.
+\end{itemize}
 
-Riesgo 2: Plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
- 
-Riesgo 3: Plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación)
-
-\end{consigna}
-
+Riesgo 4: Recurrir en forma temprana a profesores de la carrera de especialización en sistemas embebidos con las consultas pertinentes.
+\begin{itemize}
+  \item Severidad (S): 9 \\
+La severidad no es mitigada por este medio.
+  \item Probabilidad de ocurrencia (O): 3. \\
+Los docentes de la carrera de especialización en sistemas embebidos pueden marcar la diferencia para elegir un camino más directo a una solución.
+\end{itemize}
 
 \section{13. Gestión de la calidad}
 \label{sec:calidad}
 
-\begin{consigna}{red}
-Para cada uno de los requerimientos del proyecto indique:
 \begin{itemize} 
-\item Req \#1: Copiar acá el requerimiento.
+\item Req \#1: Requerimientos de documentación.
+	\begin{itemize}
+	\item Incluye los requerimientos \textbf{1.1}, \textbf{1.2}, \textbf{1.3}, \textbf{1.4}
+	\item Verificación: 
+	\begin{itemize}
+		\item Responsable: \authorname.
+		\item Métodología: Revisión por parte de especialistas. 
+	\end{itemize}	 
+	\item Validación:
+	\begin{itemize}
+		\item Responsable: \clientename	
+		\item Métodología: Nota de recepción de la documentación por parte del cliente. 	
+	\end{itemize}
+	\end{itemize}
 
-Verificación y validación:
+\item Req \#2: Requerimientos de implementación de software.
+	\begin{itemize}
+	\item Incluye los requerimientos \textbf{2.1}, \textbf{2.2}, \textbf{2.3}
+	\item Verificación: 
+	\begin{itemize}
+		\item Responsable: \authorname.
+		\item Métodología: Test Unitarios y tests de integración.
+	\end{itemize}	 
+	\item Validación:
+	\begin{itemize}
+		\item Responsable: \authorname.	
+		\item Métodología: simulación de casos de prueba y revisión por parte de especialistas
+	\end{itemize}
+	\end{itemize}
 
-\begin{itemize}
-\item Verificación para confirmar si se cumplió con lo requerido antes de mostrar el sistema al cliente:\\
-Detallar 
-\item Validación con el cliente para confirmar que está de acuerdo en que se cumplió con lo requerido:\\
-Detallar  
+\item Req \#3: Requerimientos de caracterización y comparación del filtro del cliente con el diseñado en este proyecto.
+	\begin{itemize}
+	\item Incluye los requerimientos \textbf{3.1}, \textbf{3.2}
+	\item Verificación: 
+	\begin{itemize}
+		\item Responsable: \authorname.
+		\item Métodología: cálculos estocásticos y simulaciones numéricas.
+	\end{itemize}	 
+	\item Validación:
+	\begin{itemize}
+		\item Responsable: \authorname.	
+		\item Métodología: nota de aceptación del cliente
+	\end{itemize}
+	\end{itemize}
+	
 \end{itemize}
 
-\end{itemize}
-
-Tener en cuenta que en este contexto se pueden mencionar simulaciones, cálculos, revisión de hojas de datos, consulta con expertos, etc.
-
-\end{consigna}
 
 \section{14. Comunicación del proyecto}
 \label{sec:comunicaciones}
 
-\begin{consigna}{red}
 El plan de comunicación del proyecto es el siguiente:
-\end{consigna}
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{table}[htpb]
+\begin{table}[H]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabularx}{\linewidth}{@{}|X|C{2.5cm}|C{3cm}|C{1.8cm}|C{2cm}|C{2.2cm}|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{6}{|c|}{\cellcolor[HTML]{C0C0C0}PLAN DE COMUNICACIÓN DEL PROYECTO}           \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-¿Qué comunicar? & Audiencia & Propósito & Frecuencia & Método de comunicac. & Responsable \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
-\end{tabular}%
-}
+¿Qué comunicar? 									& Audiencia 				& Propósito & Frecuencia & Método de comunicac. & Responsable \\ \hline
+Avance del proyecto         						& \supname y \clientename  & Mantener informado y obtener feedback y consejos. 				&  Mensual 	& email & Alejandro Moreno  \\ \hline
+Problemas que afecten la duración del proyecto    &  \clientename		        & Informar y tomar decisiones conjuntas sobre el curso a seguir 	& Mensual 	& email & Alejandro Moreno   \\ \hline
+\end{tabularx}%
 \end{table}
 
 \section{15. Gestión de Compras}
 \label{sec:compras}
 
-\begin{consigna}{red}
-En caso de tener que comprar elementos o contratar servicios:
-a) Explique con qué criterios elegiría a un proveedor.
-b) Redacte el Statement of Work correspondiente.
-\end{consigna}
+Para este proyecto no es necesario realizar ninguna compra.
 
 \section{16. Seguimiento y control}
 \label{sec:seguimiento}
 
-\begin{consigna}{red}
-Para cada tarea del proyecto establecer la frecuencia y los indicadores con los se seguirá su avance y quién será el responsable de hacer dicho seguimiento y a quién debe comunicarse la situación (en concordancia con el Plan de Comunicación del proyecto).
-
-El indicador de avance tiene que ser algo medible, mejor incluso si se puede medir en \% de avance. Por ejemplo,se pueden indicar en esta columna cosas como ``cantidad de conexiones ruteadeas'' o ``cantidad de funciones implementadas'', pero no algo genérico y ambiguo como ``\%'', porque el lector no sabe porcentaje de qué cosa.
-
-\end{consigna}
-
-\begin{table}[!htpb]
-\centering
-\begin{tabularx}{\linewidth}{@{}|X|X|X|X|X|X|@{}}
+\begin{longtable}{|m{1cm}|m{3.5cm}|m{2.2cm}|m{2cm}|m{3cm}|m{1.5cm}|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{6}{|c|}{\cellcolor[HTML]{C0C0C0}SEGUIMIENTO DE AVANCE}                                                                       \\ \hline
 \rowcolor[HTML]{C0C0C0} 
-Tarea del WBS & Indicador de avance & Frecuencia de reporte & Resp. de seguimiento & Persona a ser informada & Método de comunic. \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
-\end{tabularx}%
-%}
-\end{table}
+Tarea del WBS 			& Indicador de avance & Frecuencia de reporte & Resp. de seguimiento & Persona a ser informada & Método de comunic. \\ \hline
+\endfirsthead
+
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\multicolumn{6}{c}{\cellcolor[HTML]{C0C0C0}SEGUIMIENTO DE AVANCE}                                                                       \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+Tarea del WBS 			& Indicador de avance & Frecuencia de reporte & Resp. de seguimiento & Persona a ser informada & Método de comunic. \\ \hline
+\endhead
+
+\multicolumn{6}{c}{Continúa}
+\endfoot
+
+\endlastfoot
+
+\rowcolor{lightgray!50}
+\textbf{1}					& Fecha de inicio  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{2}					& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+2.1 						& Cantidad de secciones completadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{3}					& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+3.1							& No mensurable  			& Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+3.2							& No mensurable  			& Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+3.3							& No mensurable  			& Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{4}					& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!25}
+4.1							& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+4.1.1						& Cantidad de módulos terminados (efectos dínamicos, linealización, etc)  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+4.1.2						& Cantidad de módulos terminados (Errores de los sensores, Astrodinámica del GPS) & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+4.1.3						& Cantidad de módulos terminados (Modelo de medición, linealización, etc)  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!25}
+4.2							& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+4.2.1						& Cantidad de módulos terminados (efectos dínamicos, linealización, etc)  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+4.2.2						& Cantidad de módulos terminados (Errores de los sensores, Astrodinámica del GPS)  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+4.2.3						& Cantidad de módulos terminados (Modelo de medición, linealización, etc) & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{5}					& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+5.1							& Cantidad de casos estudiados  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+5.2							& Cantidad de casos estudiados  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+5.3							& Cantidad de casos estudiados  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+5.4							& Cantidad de casos estudiados  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{6}					& Cantidad de secciones terminadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}		
+\textbf{7}					& Presentación  & Mensual mientras dure la tarea & \authorname & \clientename & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{8}					& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+8.1							& Cantidad de clases terminadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+8.2							& Cantidad de clases terminadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+8.3							& Cantidad de clases terminadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+8.4							& Cantidad de clases terminadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{9}					& Avance de las subtareas   & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+9.1							& Cantidad de casos estudiados  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{10}					& Avance de las subtareas  & Mensual mientras dure la tarea & \authorname & \clientename & email \\ \hline
+10.1 						& Cantidad de secciones terminadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+10.2 						& Cantidad de filminas terminadas  & Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\rowcolor{lightgray!50}
+\textbf{11}					& Exposición pública  		& Mensual mientras dure la tarea & \authorname & \clientename, \supname & email \\ \hline
+\end{longtable}
+
 
 \section{17. Procesos de cierre}    
 \label{sec:cierre}
 
-\begin{consigna}{red}
-Establecer las pautas de trabajo para realizar una reunión final de evaluación del proyecto, tal que contemple las siguientes actividades:
+La reunión final que dará cierre al proyecto tendrá lugar durante la presentación y defensa pública del trabajo final de carrera de Alejandro Moreno.
 
-\begin{itemize}
+\begin{enumerate}
 \item Pautas de trabajo que se seguirán para analizar si se respetó el Plan de Proyecto original:
- - Indicar quién se ocupará de hacer esto y cuál será el procedimiento a aplicar. 
+	\begin{itemize}
+		\item \authorname: se ocupará de diseñar una tablas de doble entrada para relevar el cumplimiento de las tareas del WBS, 
+		\item \authorname: se ocupará de diseñar una tablas de doble entrada para relevar el cumplimiento de los requerimientos del cliente.
+	\end{itemize}
+	
 \item Identificación de las técnicas y procedimientos útiles e inútiles que se utilizaron, y los problemas que surgieron y cómo se solucionaron:
- - Indicar quién se ocupará de hacer esto y cuál será el procedimiento para dejar registro.
-\item Indicar quién organizará el acto de agradecimiento a todos los interesados, y en especial al equipo de trabajo y colaboradores:
-  - Indicar esto y quién financiará los gastos correspondientes.
-\end{itemize}
-
-\end{consigna}
-
-
+	\begin{itemize}
+		\item \authorname: se ocupará de redactar un escrito de 1 o 2 carillas con los puntos salientes que merezcan ser documentados, ya sea por 				haber resultado útiles como también por haber resultado en una pérdida de tiempo.
+	\end{itemize}
+\item Durante la presentación y defensa pública del trabajo final de carrera, Alejandro Moreno incluirá
+una sección especial para agradecer a todos los interesados, y en especial a los colaboradores.
+\end{enumerate}
 \end{document}
